@@ -1,0 +1,34 @@
+TODO:
+
+FlappyApp.java:
+1. Initialize the setup of the window including the window size and drawing FlappyWorld. (DONE)
+
+Ball.java:
+1. Create ball class and draw ball. (DONE)
+2. Apply gravity and collision to ball. (Almost Done)
+      - Paddle collision/bounce still needs to be implemented
+      - Add a method that detects when the ball is touching a wall and
+      	if the ball is touching a wall to end the game
+      	
+Paddle.java:
+1. Create paddle class and draw the paddle successfully (DONE)
+      - Make sure paddle is following mouse as well as is centered with the mouse (DONE)
+2. Implement bounce so that when the ball touches the paddle (no matter how much momentum it has) it always bounces off (NOT DONE)
+
+Wall.java:
+1. Create wall class and render walls (DONE/WIP)
+      - Fix spacing on the walls so that the gap between the top and bottom wall is not so large
+      - Potentially alter code so that it never stops rendering walls till the game is over
+        (currently the code is set to render 100 walls only)
+      - Make it so that as the game goes on the gaps get harder and harder to clear either by changing the gap size
+        or just speeding up the walls.
+
+
+
+
+
+
+
+sidenote:
+  - Move list code from FlappyApp.java that initializes a list of walls as well as the code the code that renders the walls
+    to the Wall.java file
