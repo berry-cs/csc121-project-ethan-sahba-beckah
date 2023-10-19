@@ -57,7 +57,7 @@ public class Walls {
      */
     public void genWalls() {
         for (int i = 0; i < 100; i++) {  						                                       // Adjust the number of walls as needed
-            float gapHeight = rand.nextInt(-300, 100); 												   // Define the gap height (openingY)
+            float gapHeight = rand.nextInt(-250, 400); 												   // Define the gap height (openingY)
             Wall topWall = new Wall(lastWallX, 0, 60, gapHeight, 2); 								   // Top wall with adjusted gapHeight
             Wall bottomWall = new Wall(lastWallX, gapHeight + 100, 60, 600 - gapHeight - 100, 2);      // Bottom wall
             walls.add(topWall);
@@ -75,7 +75,7 @@ public class Walls {
             wall.move();
             wall.draw(p);
             if (wall.isOutOfScreen()) {
-                float openingY = rand.nextInt(-300, 100);
+                float openingY = rand.nextInt(-250, 400);
                 Wall newWall = new Wall(lastWallX, 100, 40, openingY, 2);
                 walls.set(i, newWall);
                 lastWallX += wallSpacing;
