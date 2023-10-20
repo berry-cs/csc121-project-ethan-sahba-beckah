@@ -57,11 +57,4 @@ public class Ball {
     	bY += vSpeed;
     }
     
-    // Updates the ball on screen
-    public Ball update() {
-    	Gravity();
-    	onScreen();
-    	return this;
-    }
-    
 }

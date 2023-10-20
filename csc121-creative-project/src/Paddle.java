@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
 
 /**
  * Every paddle has a height and a width
@@ -7,21 +6,23 @@ import processing.core.PConstants;
 public class Paddle {
 	int paddleWidth;
 	int paddleHeight;
+	int mouseX;
+    int mouseY;
 	
-	public Paddle(int paddleWidth, int paddleHeight) {
+	public Paddle(int paddleWidth, int paddleHeight, int mouseX, int mouseY) {
 		this.paddleWidth = paddleWidth;
 		this.paddleHeight = paddleHeight;
+		this.mouseX = mouseX;
+        this.mouseY = mouseY;
 	}
 	
 	/**
 	 * Draws the paddle on screen, centers it with the mouse, and also has it
 	 * track the mouse so that the paddle is always following
 	 */
-	public PApplet draw(PApplet p) {
-		p.fill(0, 0, 0);
-		p.rect(p.mouseX, p.mouseY, paddleWidth, paddleHeight, 15); 
-		p.rectMode(PConstants.CENTER); // centers the paddle with the mouse
-		return p; 
-	}	
+	public void draw(PApplet p) {
+        p.fill(0, 0, 0);
+        p.rect(mouseX - paddleWidth / 2, mouseY - paddleHeight / 2, paddleWidth, paddleHeight, 15); 
+    }
 	
 }

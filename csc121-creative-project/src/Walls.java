@@ -1,6 +1,9 @@
 import processing.core.PApplet;
 import java.util.*;
 
+/*
+ * Base code for the walls. Establishes what a wall is and draws the wall.
+ */
 class Wall {
     float x;
     float openingY;
@@ -40,6 +43,11 @@ class Wall {
     }
 }
 
+
+/*
+ * This class below makes an ArrayList of the walls made in the code above
+ * and applies code to generate and move them.
+ */
 public class Walls {
     private ArrayList<Wall> walls;
     private float wallSpacing = 300; 							// Adjust this value to control the gap between each new wall
@@ -56,7 +64,7 @@ public class Walls {
      * Generates walls
      */
     public void genWalls() {
-        for (int i = 0; i < 100; i++) {  						                                       // Adjust the number of walls as needed
+        for (int i = 0; i < 999; i++) {  						                                       // Adjust the number of walls as needed
             float gapHeight = rand.nextInt(-250, 400); 												   // Define the gap height (openingY)
             Wall topWall = new Wall(lastWallX, 0, 60, gapHeight, 2); 								   // Top wall with adjusted gapHeight
             Wall bottomWall = new Wall(lastWallX, gapHeight + 100, 60, 600 - gapHeight - 100, 2);      // Bottom wall
@@ -69,11 +77,10 @@ public class Walls {
     /*
      * Draws the walls and moves them on screen
      */
-    public void moveAndDraw(PApplet p) {
+    public void moveWalls() {
         for (int i = 0; i < walls.size(); i++) {
             Wall wall = walls.get(i);
             wall.move();
-            wall.draw(p);
             if (wall.isOutOfScreen()) {
                 float openingY = rand.nextInt(-250, 400);
                 Wall newWall = new Wall(lastWallX, 100, 40, openingY, 2);
@@ -82,4 +89,5 @@ public class Walls {
             }
         }
     }
+    
 }
