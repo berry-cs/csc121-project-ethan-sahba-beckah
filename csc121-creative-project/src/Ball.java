@@ -19,7 +19,9 @@ public class Ball {
     
     }
     
-    // Draws ball on the screen
+    /*
+     * Draws the ball
+     */
     public PApplet draw(PApplet b) {
         b.fill(0, 0, 255);
         b.circle((float) this.bX, (float) this.bY, this.size);
@@ -27,7 +29,9 @@ public class Ball {
     }
     
     
-    // Keeps the ball from falling through the edges
+    /*
+     * Keeps the ball from falling through the edges
+     */
     public void onScreen() {
     	if (bY + (size / 3) > 600) {
     		floorCol(600);
@@ -39,19 +43,25 @@ public class Ball {
     	
     }
     
-    // Applies collision to the ball on the floor
+    /*
+     * Applies collision to the ball on the floor
+     */
     public void floorCol(double f) {
     	bY = f - (size / 3);
     	vSpeed *= -0.5;
     }
     
-    // Applies collision to the ball on the ceiling
+    /*
+     * Applies collision to the ball on the ceiling
+     */
     public void ceilingCol(double c) {
     	bY = c + (size / 3);
     	vSpeed *= -0.5;
     }
     
- // Applies gravity to the ball
+    /*
+     * Applies gravity to the ball
+     */
     public void Gravity() {
     	vSpeed += gravity;
     	bY += vSpeed;
