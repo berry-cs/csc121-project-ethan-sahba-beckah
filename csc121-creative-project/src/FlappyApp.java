@@ -1,10 +1,10 @@
 import processing.core.*;
-import processing.event.MouseEvent;
+import processing.event.*;
 
 public class FlappyApp extends PApplet {
 
 	// represents a FlappyWorld instance
-    FlappyWorld f;
+    IWorld f;
     
     // init window size
     public void settings() {
@@ -13,9 +13,7 @@ public class FlappyApp extends PApplet {
 
     // init world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
     public void setup() {
-    	f = new FlappyWorld(new Ball(400, 200, 15, 1, 0), 
-    						new Paddle(80, 10, this.mouseX, this.mouseY), 
-    						new Wall(600, 0, 50, 100, 15), new WallManager());
+    	f = new StartScreen();
     }
 
     // Draws objects on the screen
@@ -27,6 +25,11 @@ public class FlappyApp extends PApplet {
     // Checks if the mouse was moved
     public void mouseMoved(MouseEvent mev) {
         f = f.mouseMoved(mev);
+    }
+    
+    
+    public void keyPressed(KeyEvent kev) {
+        f = f.keyPressed(kev);
     }
     
 

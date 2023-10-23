@@ -43,6 +43,11 @@ public class Ball {
     	
     }
     
+    // adds some vertical speed upwards
+    public void boost(int vAmt) {
+        this.vSpeed -= vAmt;
+    }
+    
     /*
      * Applies collision to the ball on the floor
      */

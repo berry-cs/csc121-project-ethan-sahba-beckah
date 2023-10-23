@@ -1,8 +1,9 @@
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 import processing.event.MouseEvent;
 
 // Every FlappyWorld has a background color
-public class FlappyWorld {
+public class FlappyWorld implements IWorld {
 	Ball b;																// Represents the ball
 	Paddle p;															// Represents the paddle
 	Wall w;																// Represents the walls
@@ -28,11 +29,10 @@ public class FlappyWorld {
         return b;
     }
   
-    
     /*
      * Create a new Paddle instance with updated position based on mouse movement
      */
-    public FlappyWorld mouseMoved(MouseEvent mev) {
+    public IWorld mouseMoved(MouseEvent mev) {
         Paddle updatedPaddle = new Paddle(p.paddleWidth, p.paddleHeight, mev.getX(), mev.getY());
         return new FlappyWorld(b, updatedPaddle, w, wm);
     }
@@ -40,11 +40,23 @@ public class FlappyWorld {
     /*
      * Updates the FlappyWorld instance
      */
-    public FlappyWorld update() {
+    public IWorld update() {
     	this.b.Gravity();
     	this.b.onScreen();
     	this.wm.moveWalls();
+    	
+    	//this.b.bounce(this.p);   // check if ball hit paddle and make it bounce if so
+    	
     	return this;
+    }
+
+    public IWorld keyPressed(KeyEvent kev) {
+        if (kev.getKey() == ' ') {
+            this.b.boost(30);
+            return new FlappyWorld(this.b, this.p, this.w, this.wm);
+        } else {
+            return this;
+        }
     }
 	
    
