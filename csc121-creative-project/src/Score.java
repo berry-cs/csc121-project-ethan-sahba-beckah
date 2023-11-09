@@ -1,7 +1,10 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class Score {
     private int score;
+    
+    PFont serif;
 
     public Score() {
         this.score = 0;
@@ -18,7 +21,9 @@ public class Score {
     public void displayScore(PApplet p) {
         p.fill(0);
         p.textSize(40);
-        p.text("Score " + score, 20, 30);
+        serif = p.createFont("SourceCodePro-Semibold.otf", 20, true);
+        p.textFont(serif);
+        p.text("Score " + getScore(), 20, 30); // Use getScore() to dynamically retrieve the current score
     }
 }
 

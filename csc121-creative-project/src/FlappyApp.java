@@ -5,7 +5,6 @@ public class FlappyApp extends PApplet {
 
 	// represents a FlappyWorld instance
     IWorld f;
-    PFont startF, serif;
     
     // init window size
     public void settings() {
@@ -15,9 +14,6 @@ public class FlappyApp extends PApplet {
     // init world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
     public void setup() {
     	f = new StartScreen();
-    	startF = createFont("FlappyBirdy.ttf", 150);
-    	serif = createFont("Serif", (float) 30.0);
-        textFont(startF);
     }
 
     // Draws objects on the screen

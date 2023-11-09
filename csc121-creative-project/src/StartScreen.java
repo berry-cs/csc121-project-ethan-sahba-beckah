@@ -21,18 +21,19 @@ public class StartScreen implements IWorld {
     float angle = 0; 						 // Angle for the sine wave
     float amplitude = 10; 					 // Amplitude of the bounce
     
-    PFont startF, serif;
+    PFont startF;
 
     @Override
     public PApplet draw(PApplet c) {
     	c.background(100,188,140);
         c.fill(0);
+        startF = c.createFont("FlappyBirdy.ttf", 150, true);
 
         yOffset = amplitude * PApplet.sin(angle); 				// Calculate the vertical offset using a sine wave
         angle += 0.05; 											// Adjust the speed of the bounce by changing the increment
-
         y = 200 + yOffset;
         
+        c.textFont(startF);
         c.textSize(150);
         c.text("FlappyPong", x, y);
     

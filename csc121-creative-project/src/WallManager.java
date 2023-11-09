@@ -33,7 +33,7 @@ public class WallManager {
     /*
      * Moves the walls
      */
-    public void moveWalls() {
+    public void moveWalls(Ball ball, Score score) {
         for (int i = 0; i < walls.size(); i++) {
             Wall wall = walls.get(i);
             wall.move();																							// Calls the move function from Walls.java
@@ -43,6 +43,12 @@ public class WallManager {
                 walls.set(i, newWall);
                 lastWallX += wallSpacing;
             }
+            
+            if (ball.bX > wall.x && ball.bX < wall.x + wall.wallWidth) {
+                score.increaseScore();
+                
+            }
+            
         }
     }
     

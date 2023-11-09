@@ -47,7 +47,10 @@ public class FlappyWorld implements IWorld {
     	this.b.Gravity();
     	this.b.onScreen();
     	this.b.checkPaddleCollision(p);
-    	this.wm.moveWalls();
+    	this.wm.moveWalls(this.b, this.s);
+    	this.b.checkWallPos(w, s);
+    	System.out.println(s.getScore());
+    	
     	
     	//this.b.bounce(this.p);   // check if ball hit paddle and make it bounce if so
     	

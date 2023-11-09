@@ -84,6 +84,12 @@ public class Ball {
 
         }
     }
+    
+    public void checkWallPos(Wall wall, Score score) {
+    	if (bX > wall.x) {
+    		score.increaseScore();
+    	}
+    }
 
     
 }
