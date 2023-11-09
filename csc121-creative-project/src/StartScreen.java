@@ -17,22 +17,20 @@ public class StartScreen implements IWorld {
     float x2;
     float y2;
     
-    float yOffset = 0; // Offset for the vertical bounce
-    float angle = 0; // Angle for the sine wave
-    float amplitude = 10; // Amplitude of the bounce
+    float yOffset = 0;						 // Offset for the vertical bounce
+    float angle = 0; 						 // Angle for the sine wave
+    float amplitude = 10; 					 // Amplitude of the bounce
     
-    PFont startF;
+    PFont startF, serif;
 
     @Override
     public PApplet draw(PApplet c) {
     	c.background(100,188,140);
         c.fill(0);
 
-        // Calculate the vertical offset using a sine wave
-        yOffset = amplitude * PApplet.sin(angle);
-        angle += 0.05; // Adjust the speed of the bounce by changing the increment
+        yOffset = amplitude * PApplet.sin(angle); 				// Calculate the vertical offset using a sine wave
+        angle += 0.05; 											// Adjust the speed of the bounce by changing the increment
 
-        // Update the Y-coordinate for the text position
         y = 200 + yOffset;
         
         c.textSize(150);
@@ -60,8 +58,8 @@ public class StartScreen implements IWorld {
     @Override
     public IWorld keyPressed(KeyEvent kev) {
         if (kev.getKey() == ' ') {
-            return new FlappyWorld(new Ball(400, 200, 15, 1, 0), 
-                    new Paddle(80, 10, 0, 0), 
+            return new FlappyWorld(new Ball(100, 200, 15, 1, 3), 
+                    new Paddle(80, 10, 100, 100), 
                     new Wall(600, 0, 50, 100, 15), new WallManager());
         } else {
             return this;

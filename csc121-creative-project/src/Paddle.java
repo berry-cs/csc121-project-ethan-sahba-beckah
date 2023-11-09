@@ -20,7 +20,7 @@ public class Paddle {
 	 * Draws the paddle on screen
 	 */
 	public void draw(PApplet p) {
-        p.fill(0, 0, 0);
+        p.fill(33, 97, 140);
         p.rect(mX - paddleWidth / 2, mY - paddleHeight / 2, paddleWidth, paddleHeight, 15); 
     }
     

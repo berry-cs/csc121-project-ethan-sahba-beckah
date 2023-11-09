@@ -20,9 +20,10 @@ class Wall {
      * Draws the walls
      */
     public void draw(PApplet p) {
-        p.fill(0, 0, 0); 																// Set the color of the walls
-        p.rect(x, 0, wallWidth, openingY); 												// Upper wall
-        p.rect(x, 600, wallWidth, p.height - openingY - wallHeight); 					// Lower wall
+        p.fill(20, 143, 119); 																// Set the color of the walls
+        p.noStroke();
+        p.rect(x, 0, wallWidth, openingY, 15); 												// Upper wall
+        p.rect(x, 600, wallWidth, p.height - openingY - wallHeight, 10); 					// Lower wall
     }
 
     /*

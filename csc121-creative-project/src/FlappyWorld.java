@@ -8,6 +8,7 @@ public class FlappyWorld implements IWorld {
 	Paddle p;															// Represents the paddle
 	Wall w;																// Represents the walls
 	WallManager wm;														// Represents the WallManager
+	Score s;
 	
 
     public FlappyWorld(Ball b, Paddle p, Wall w, WallManager wm) {
@@ -15,17 +16,19 @@ public class FlappyWorld implements IWorld {
     	this.p = p;
     	this.w = w;
     	this.wm = wm;
+    	this.s = new Score();
     }
     
     /*
      * Draws all the objects in the FlappyWorld
      */
     public PApplet draw(PApplet b) {
-        b.background(193, 225, 240);
+        b.background(133, 193, 233);
         this.b.draw(b);
         this.p.draw(b);
         this.w.draw(b);
         this.wm.draw(b);
+        s.displayScore(b);
         return b;
     }
   

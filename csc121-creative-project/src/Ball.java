@@ -73,9 +73,17 @@ public class Ball {
     }
     
     public void checkPaddleCollision(Paddle paddle) {
-        if (bY + size / 2 > paddle.mY - paddle.paddleHeight / 2 && bX > paddle.mX - paddle.paddleWidth / 2 && bX < paddle.mX + paddle.paddleWidth / 2) {
-            floorCol(paddle.mY - paddle.paddleHeight / 2);
+        if (bY + size / 2 >= paddle.mY - paddle.paddleHeight / 2 && bY - size / 2 <= paddle.mY + paddle.paddleHeight / 2 &&
+            bX > paddle.mX - paddle.paddleWidth / 2 && bX < paddle.mX + paddle.paddleWidth / 2) {
+            
+            // Adjust ball position
+            bY = paddle.mY - paddle.paddleHeight / 2 - size / 2;
+            
+            // Simulate bounce by reversing vertical speed
+            vSpeed *= -0.5;
+
         }
     }
+
     
 }

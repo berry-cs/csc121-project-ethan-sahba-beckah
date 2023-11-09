@@ -1,3 +1,5 @@
+
+
 import org.junit.jupiter.api.Test;
 
 import processing.event.MouseEvent;
@@ -5,7 +7,8 @@ import processing.event.MouseEvent;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FlappyWorldTest {
-    
+
+	
 	WallManager wallManager = new WallManager();
 	
 	// ball objects for onScreen() tests
@@ -33,6 +36,8 @@ public class FlappyWorldTest {
 	/*
 	 * These three tests are for the onScreen method in Ball.java
 	 */
+	
+	
     @Test
     public void testOnScreenAboveCeiling() {
         ballAboveCeiling.onScreen();
@@ -56,6 +61,8 @@ public class FlappyWorldTest {
     /*
      * These tests test ball collision methods within Ball.java
      */
+	
+	
     @Test
     public void testFloorCol() {
         double originalBY = ballFloorCol.bY;
@@ -91,6 +98,8 @@ public class FlappyWorldTest {
     /*
      * This test tests the gravity method in Ball.java
      */
+	
+	
     @Test
     public void testGravity() {
         double originalBY = ballGrav.bY;
@@ -111,6 +120,8 @@ public class FlappyWorldTest {
     /*
      * This test tests the genWalls() method in WallManager.java
      */
+	
+	
     public void testGenWalls() {
         wallManager.genWalls();
 
@@ -145,6 +156,8 @@ public class FlappyWorldTest {
     /*
      * These tests test the move() and isOutOfScreen() methods in Walls.java
      */
+	
+	
     @Test
     public void testMove() {
         wallMove.move();
