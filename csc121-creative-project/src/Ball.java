@@ -72,4 +72,10 @@ public class Ball {
     	bY += vSpeed;
     }
     
+    public void checkPaddleCollision(Paddle paddle) {
+        if (bY + size / 2 > paddle.mY - paddle.paddleHeight / 2 && bX > paddle.mX - paddle.paddleWidth / 2 && bX < paddle.mX + paddle.paddleWidth / 2) {
+            floorCol(paddle.mY - paddle.paddleHeight / 2);
+        }
+    }
+    
 }

@@ -4,18 +4,28 @@ import processing.event.KeyEvent;
 import processing.event.MouseEvent;
 
 public class StartScreen implements IWorld {
-
+	
+	/*
+	 * X & Y for the title
+	 */
 	float x;
-    float y; // Y-coordinate for the text position
+    float y; 				
+    
+    /*
+     * X & Y for the "press space" message
+     */
+    float x2;
+    float y2;
+    
     float yOffset = 0; // Offset for the vertical bounce
     float angle = 0; // Angle for the sine wave
     float amplitude = 10; // Amplitude of the bounce
+    
     PFont startF;
-    PFont anotherFont;
 
     @Override
     public PApplet draw(PApplet c) {
-        c.background(120);
+    	c.background(100,188,140);
         c.fill(0);
 
         // Calculate the vertical offset using a sine wave
@@ -25,17 +35,20 @@ public class StartScreen implements IWorld {
         // Update the Y-coordinate for the text position
         y = 200 + yOffset;
         
-        c.textFont(startF);
-        c.text("Flappy", x, y);
-        c.textFont(anotherFont);
-        c.text("Pong", x + 10, y + 40);
-
+        c.textSize(150);
+        c.text("FlappyPong", x, y);
+    
+        c.textSize(50);
+        c.text("Press space to start", x2, y2);
+        
         return c;
     }
 
     @Override
     public IWorld update() {
-        x = 180;
+        x = 95;
+        x2 = 150;
+        y2 = 400;
         return this;
     }
 
