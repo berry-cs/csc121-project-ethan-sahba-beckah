@@ -60,7 +60,7 @@ public class StartScreen implements IWorld {
     public IWorld keyPressed(KeyEvent kev) {
         if (kev.getKey() == ' ') {
             return new FlappyWorld(new Ball(100, 200, 15, 1, 3), 
-                    new Paddle(80, 10, 100, 100), 
+                    new Paddle(80, 10, 200, 200), 
                     new Wall(600, 0, 50, 100, 15), new WallManager());
         } else {
             return this;
