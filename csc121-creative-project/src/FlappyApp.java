@@ -22,12 +22,6 @@ public class FlappyApp extends PApplet {
     	f = f.update();
     }
     
-    // Checks if the mouse was moved
-    public void mouseMoved(MouseEvent mev) {
-        f = f.mouseMoved(mev);
-    }
-    
-    
     public void keyPressed(KeyEvent kev) {
         f = f.keyPressed(kev);
     }

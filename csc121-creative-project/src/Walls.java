@@ -7,6 +7,7 @@ class Wall {
     float wallWidth;
     float wallHeight;
     float speed;
+    private boolean scored;
 
     public Wall(float x, float openingY, float wallWidth, float wallHeight, float speed) {
         this.x = x;
@@ -21,7 +22,7 @@ class Wall {
      */
     public void draw(PApplet p) {
         p.fill(20, 143, 119); 																// Set the color of the walls
-        p.noStroke();
+        p.stroke(0);
         p.rect(x, 0, wallWidth, openingY, 15); 												// Upper wall
         p.rect(x, 600, wallWidth, p.height - openingY - wallHeight, 10); 					// Lower wall
     }
@@ -39,4 +40,13 @@ class Wall {
     public boolean isOffScreen() {
         return x + wallWidth <= 0;								// If x + wallWidth is less than 0, returns true
     }
+    
+    public boolean isScored() {
+        return scored;
+    }
+    
+    public void setScored(boolean scored) {
+        this.scored = scored;
+    }
+    
 }

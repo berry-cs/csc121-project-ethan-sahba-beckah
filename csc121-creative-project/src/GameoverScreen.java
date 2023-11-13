@@ -1,9 +1,8 @@
 import processing.core.PApplet;
-import processing.core.*;
 import processing.event.KeyEvent;
-import processing.event.MouseEvent;
+import processing.core.*;
 
-public class StartScreen implements IWorld {
+public class GameoverScreen implements IWorld {
 	
 	/*
 	 * X & Y for the title
@@ -38,10 +37,10 @@ public class StartScreen implements IWorld {
         
         c.textFont(startF);
         c.textSize(150);
-        c.text("FlappyPong", x, y);
+        c.text("Gameover!", x, y);
 
         c.textSize(50);
-        c.text("Press space to start", x2, y2);
+        c.text("Press space to restart", x2, y2);
         
         return c;
     }

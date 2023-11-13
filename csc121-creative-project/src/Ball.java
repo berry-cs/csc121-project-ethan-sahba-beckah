@@ -24,6 +24,8 @@ public class Ball {
      */
     public PApplet draw(PApplet b) {
         b.fill(0, 0, 255);
+        //b.imageMode(b.CENTER);
+        //b.image(b.loadImage("ghost (3).png"), (float) this.bX, (float) this.bY);
         b.circle((float) this.bX, (float) this.bY, this.size);
         return b;
     }
@@ -56,6 +58,13 @@ public class Ball {
     	vSpeed *= -0.5;
     }
     
+    public GameoverScreen touchingFloor() {
+    	if (this.bY <= 1) {
+    		return new GameoverScreen();
+    	}
+		return null;
+    }
+    
     /*
      * Applies collision to the ball on the ceiling
      */
@@ -71,25 +80,5 @@ public class Ball {
     	vSpeed += gravity;
     	bY += vSpeed;
     }
-    
-    public void checkPaddleCollision(Paddle paddle) {
-        if (bY + size / 2 >= paddle.mY - paddle.paddleHeight / 2 && bY - size / 2 <= paddle.mY + paddle.paddleHeight / 2 &&
-            bX > paddle.mX - paddle.paddleWidth / 2 && bX < paddle.mX + paddle.paddleWidth / 2) {
-            
-            // Adjust ball position
-            bY = paddle.mY - paddle.paddleHeight / 2 - size / 2;
-            
-            // Simulate bounce by reversing vertical speed
-            vSpeed *= -0.5;
-
-        }
-    }
-    
-    public void checkWallPos(Wall wall, Score score) {
-    	if (bX > wall.x) {
-    		score.increaseScore();
-    	}
-    }
-
     
 }
