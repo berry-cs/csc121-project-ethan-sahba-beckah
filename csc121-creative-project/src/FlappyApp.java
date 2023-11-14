@@ -22,11 +22,13 @@ public class FlappyApp extends PApplet {
     public void draw() {
     	f.draw(this);  // Call the draw method of FlappyWorld 
     	f = f.update();
+    	g = g.update();
     }
     
     
     public void keyPressed(KeyEvent kev) {
         f = f.keyPressed(kev);
+        g = g.keyPressed(kev);
     }
     
 

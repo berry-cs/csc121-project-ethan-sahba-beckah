@@ -23,7 +23,8 @@ public class FlappyWorld implements IWorld {
      */
     public PApplet draw(PApplet b) {
         if (!isGameOver) {
-        	b.background(151, 122, 225);
+        	
+        	b.background(91, 134, 194);
             this.b.draw(b);
             this.wm.draw(b);
             this.s.draw(b);
@@ -57,12 +58,13 @@ public class FlappyWorld implements IWorld {
     }
 
     public IWorld keyPressed(KeyEvent kev) {
-    	if (kev.getKey() == ' ') {
+    	if (kev.getKey() == ' ' && !isGameOver) {
             this.b.boost(-7);
             return new FlappyWorld(this.b, this.wm, this.s);
-        } else {
-            return this;
         }
+    	else {
+    		return this;
+    	}
     }
     
    

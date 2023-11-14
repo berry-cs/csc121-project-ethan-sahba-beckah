@@ -3,7 +3,6 @@ import processing.core.PFont;
 import processing.event.KeyEvent;
 
 public class StartScreen implements IWorld {
-	public boolean isGameOver;
 	
 	/*
 	 * x and y values for the text on screen.
@@ -21,7 +20,7 @@ public class StartScreen implements IWorld {
 	PFont FlappyFont;
 	
 	public PApplet draw(PApplet c) {
-		c.background(239, 204, 149);
+		c.background(91, 134, 194);
 		c.fill(0);
 		FlappyFont = c.createFont("FlappyBirdy.ttf", 150, true);
 		
@@ -50,7 +49,6 @@ public class StartScreen implements IWorld {
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {
-			isGameOver = false;
 			return new FlappyWorld(new Ball(100, 200, 10), 
 									new WallManager(50, 120, 2), 
 									new Score());

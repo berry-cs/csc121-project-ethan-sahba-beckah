@@ -37,7 +37,8 @@ public class Ball {
     public void draw(PApplet p) {
         p.fill(52, 46, 55);  // Set the color of the ball
         p.noStroke();
-        p.image(p.loadImage("ghost (3).png"), (float) x, (float) y);
+        p.imageMode(p.CENTER);
+        p.image(p.loadImage("birds.png"), (float) x, (float) y);
         //p.ellipse(x, y, radius * 2, radius * 2);
     }
     
