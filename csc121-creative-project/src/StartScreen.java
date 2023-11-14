@@ -21,7 +21,7 @@ public class StartScreen implements IWorld {
 	PFont FlappyFont;
 	
 	public PApplet draw(PApplet c) {
-		c.background(80, 128, 142);
+		c.background(239, 204, 149);
 		c.fill(0);
 		FlappyFont = c.createFont("FlappyBirdy.ttf", 150, true);
 		
@@ -52,7 +52,7 @@ public class StartScreen implements IWorld {
 		if (kev.getKey() == ' ') {
 			isGameOver = false;
 			return new FlappyWorld(new Ball(100, 200, 10), 
-									new WallManager(50, 150, 2), 
+									new WallManager(50, 120, 2), 
 									new Score());
 		} else {
 			return this;

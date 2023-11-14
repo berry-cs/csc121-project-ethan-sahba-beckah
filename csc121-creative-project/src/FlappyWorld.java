@@ -23,7 +23,7 @@ public class FlappyWorld implements IWorld {
      */
     public PApplet draw(PApplet b) {
         if (!isGameOver) {
-        	b.background(93, 145, 233);
+        	b.background(151, 122, 225);
             this.b.draw(b);
             this.wm.draw(b);
             this.s.draw(b);

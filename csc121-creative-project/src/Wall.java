@@ -18,7 +18,7 @@ public class Wall {
     }
 	
 	public void draw(PApplet p) {
-		p.fill(38, 64, 39);
+		p.fill(56, 2, 59);
 		p.noStroke();
 		p.rect(x, 0, width, gapY, 10);												//top wall
         p.rect(x, gapY + gapHeight, width, p.height - (gapY + gapHeight), 10);		//bottom wall
