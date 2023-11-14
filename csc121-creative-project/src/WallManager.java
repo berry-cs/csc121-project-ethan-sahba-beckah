@@ -1,69 +1,70 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import processing.core.PApplet;
 
 public class WallManager {
-    ArrayList<Wall> walls;										// Initialize the ArrayList for walls
-    private float wallSpacing = 300; 							// Adjust this value to control the gap between each new wall
-    private float lastWallX = 600; 								// Initial position of the first wall
-    
-    Random rand = new Random();									// Initialize random()
+    static ArrayList<Wall> walls;
+    float wallWidth;      // Width of the walls
+    float gapHeight;      // Height of the gap
+    float wallSpeed;      // Speed of the walls
+    float timeSinceLastWall; // Time since the last wall was added
+    Random rand = new Random();		
 
-    public WallManager() {
-        walls = new ArrayList<>();
-        genWalls();
+    // Constructor
+    public WallManager(float wallW, float gapH, float speed) {
+        walls = new ArrayList<Wall>();
+        wallWidth = wallW;
+        gapHeight = gapH;
+        wallSpeed = speed;
+        timeSinceLastWall = 0;
     }
 
-    /*
-     * Generates the walls
-     */
-    public void genWalls() {
-        for (int i = 0; i < 999; i++) {																							// For loop that runs 999 times.
-        	
-        	float gapHeightTop = rand.nextInt(100, 200);
-        	float additionalHeight = rand.nextInt(100, 200); // Generate a separate random value
-        	
-        	Wall topWall = new Wall(lastWallX, 0, 60, gapHeightTop, 2);															// Generates the top wall
-        	Wall bottomWall = new Wall(lastWallX, gapHeightTop + 100, 60, 600 - gapHeightTop - 100 + additionalHeight, 2);		// Generates the bottom wall
-            
-        	walls.add(topWall);
-            walls.add(bottomWall);
-            lastWallX += wallSpacing;
+    // Update all wall pairs
+    public void updateWalls(Ball ball, Score score) {
+        timeSinceLastWall++;
+
+        // Check if it's time to add a new wall
+        if (timeSinceLastWall > 150) { // Adjust this value for wall spawning frequency
+            addWall();
+            timeSinceLastWall = 0;
         }
-    }
-    
-    /*
-     * Moves the walls
-     */
-    public void moveWalls(Ball ball, Score score) {
-        for (int i = 0; i < walls.size(); i++) {
-            Wall wall = walls.get(i);
-            wall.move();																							// Calls the move function from Walls.java
-            
-            if (score.shouldScore(wall, ball)) {
-                score.increaseScore();
-                wall.setScored(true);
+
+        // Update each wall pair
+        Iterator<Wall> iter = walls.iterator();
+        while (iter.hasNext()) {
+            Wall wall = iter.next();
+            wall.move();
+
+            // Remove the wall if it is off screen
+            if (wall.isOffScreen()) {
+                iter.remove();
             }
-            
-            if (wall.isOffScreen()) {																				// Checks if wall is off screen and generates a new one
-                float openingY = rand.nextInt(-300, 100);
-                Wall newWall = new Wall(lastWallX, 100, 40, openingY, 2);
-                walls.set(i, newWall);
-                lastWallX += wallSpacing;
-            }
-            
         }
+        
+        for (Wall wall : WallManager.walls) {
+            if (ball.x > wall.x + wall.width && !wall.scoreCounted) {
+                score.increment();
+                wall.scoreCounted = true; // Add a boolean flag in WallPair to ensure score is counted only once per wall
+            }
+        }
+        
     }
-    
-    /*
-     * Draws the walls
-     */
+
+    // Draw all wall pairs
     public void draw(PApplet p) {
-    	for (Wall wall : walls) {
-    		wall.draw(p);
-    	}
+        for (Wall wall : walls) {
+            wall.draw(p);
+        }
     }
-    
-    
+
+    // Add a new wall pair
+    private void addWall() {
+        // Calculate a random gap start position
+        float gapStart = rand.nextFloat(100, 600 - 100 - gapHeight); // Adjust range as needed
+
+        // Add a new wall pair to the list
+        walls.add(new Wall(600, gapStart, gapHeight, wallWidth, wallSpeed));
+    }
 }

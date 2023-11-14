@@ -5,14 +5,15 @@ import processing.event.MouseEvent;
 // Every FlappyWorld has a background color
 public class FlappyWorld implements IWorld {
 	Ball b;																// Represents the ball
-	Wall w;																// Represents the walls
-	WallManager wm;														// Represents the WallManager
+	WallManager wm;
 	Score s;
+	Wall w;
+	public boolean isGameOver;
+	IWorld g = new GameoverScreen();
 	
-
-    public FlappyWorld(Ball b, Wall w, WallManager wm, Score s) {
+	
+    public FlappyWorld(Ball b, WallManager wm, Score s) {
     	this.b = b;
-    	this.w = w;
     	this.wm = wm;
     	this.s = s;
     }
@@ -21,34 +22,48 @@ public class FlappyWorld implements IWorld {
      * Draws all the objects in the FlappyWorld
      */
     public PApplet draw(PApplet b) {
-        b.background(93, 145, 233);
-        this.b.draw(b);
-        this.w.draw(b);
-        this.wm.draw(b);
-        this.s.displayScore(b);
-        return b;
+        if (!isGameOver) {
+        	b.background(93, 145, 233);
+            this.b.draw(b);
+            this.wm.draw(b);
+            this.s.draw(b);
+            
+            if (this.b.hitsGround()) {
+                isGameOver = true;
+            }
+
+            for (Wall wall : WallManager.walls) {
+                if (this.b.collidesWith(wall)) {
+                    isGameOver = true;
+                    break;
+                }
+            }
+            
+            
+        } else {
+        	return g.draw(b);
+        }
+        
+		return b;
     }
     
     /*
      * Updates the FlappyWorld instance
      */
     public IWorld update() {
-    	
-    	this.b.Gravity();
-    	this.b.onScreen();
-    	this.wm.moveWalls(b, s);
-    	
+    	this.b.gravity();
+    	this.wm.updateWalls(b, s);
     	return this;
     }
 
     public IWorld keyPressed(KeyEvent kev) {
-        
     	if (kev.getKey() == ' ') {
-            this.b.boost(18);
-            return new FlappyWorld(this.b, this.w, this.wm, this.s);
+            this.b.boost(-7);
+            return new FlappyWorld(this.b, this.wm, this.s);
         } else {
             return this;
         }
     }
+    
    
 }

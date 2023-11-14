@@ -5,6 +5,7 @@ public class FlappyApp extends PApplet {
 
 	// represents a FlappyWorld instance
     IWorld f;
+    IWorld g;
     
     // init window size
     public void settings() {
@@ -14,6 +15,7 @@ public class FlappyApp extends PApplet {
     // init world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
     public void setup() {
     	f = new StartScreen();
+    	g = new GameoverScreen();
     }
 
     // Draws objects on the screen
@@ -21,6 +23,7 @@ public class FlappyApp extends PApplet {
     	f.draw(this);  // Call the draw method of FlappyWorld 
     	f = f.update();
     }
+    
     
     public void keyPressed(KeyEvent kev) {
         f = f.keyPressed(kev);
