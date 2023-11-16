@@ -9,7 +9,6 @@ public class FlappyWorld implements IWorld {
 	Score s;
 	Wall w;
 	public boolean isGameOver;
-	IWorld g = new GameoverScreen();
 	
 	
     public FlappyWorld(Ball b, WallManager wm, Score s) {
@@ -22,29 +21,10 @@ public class FlappyWorld implements IWorld {
      * Draws all the objects in the FlappyWorld
      */
     public PApplet draw(PApplet b) {
-        if (!isGameOver) {
-        	
         	b.background(91, 134, 194);
             this.b.draw(b);
             this.wm.draw(b);
-            this.s.draw(b);
-            
-            if (this.b.hitsGround()) {
-                isGameOver = true;
-            }
-
-            for (Wall wall : WallManager.walls) {
-                if (this.b.collidesWith(wall)) {
-                    isGameOver = true;
-                    break;
-                }
-            }
-            
-            
-        } else {
-        	return g.draw(b);
-        }
-        
+            this.s.draw(b); 
 		return b;
     }
     
@@ -54,18 +34,41 @@ public class FlappyWorld implements IWorld {
     public IWorld update() {
     	this.b.gravity();
     	this.wm.updateWalls(b, s);
-    	return this;
+    	gameover();
+    	if (isGameOver) {
+    		return new GameoverScreen(this.s);
+    	} else {
+    		return this;
+    	}
     }
 
+    /*
+     * Checks if the user pressed space as well as it checks that isGameOver is not true.
+     */
     public IWorld keyPressed(KeyEvent kev) {
     	if (kev.getKey() == ' ' && !isGameOver) {
             this.b.boost(-7);
             return new FlappyWorld(this.b, this.wm, this.s);
-        }
+        } 
     	else {
     		return this;
     	}
     }
     
+    /*
+     * Checks if the bird hits the ground or the walls
+     */
+    public void gameover() {
+    	if (this.b.hitsGround()) {
+            isGameOver = true;
+        }
+    	
+    	for (Wall wall : WallManager.walls) {
+            if (this.b.collidesWith(wall)) {
+                isGameOver = true;
+                break;
+            }
+        }
+    }
    
 }

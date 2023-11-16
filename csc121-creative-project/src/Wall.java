@@ -17,6 +17,9 @@ public class Wall {
         scoreCounted = false;
     }
 	
+	/*
+	 * Draws the walls onscreen
+	 */
 	public void draw(PApplet p) {
 		p.fill(104, 161, 143);
 		p.noStroke();
@@ -24,10 +27,16 @@ public class Wall {
         p.rect(x, gapY + gapHeight, width, p.height - (gapY + gapHeight), 10);		//bottom wall
 	}
 	
+	/*
+	 * Applies movement to the walls so that they move left across the screen
+	 */
 	public void move() {
 		x -= speed;
 	}
 	
+	/*
+	 * Determines whether or not wall is off screen
+	 */
 	public boolean isOffScreen() {
 		return x + width < 0;
 	}

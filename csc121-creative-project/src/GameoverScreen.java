@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
 import processing.event.KeyEvent;
 
 public class GameoverScreen implements IWorld {
-	public boolean isGameOver = false;
 
+	private Score score;
+	private Score highScore;
+	
 	/*
 	 * x and y values for the text on screen.
 	 */
@@ -14,6 +18,30 @@ public class GameoverScreen implements IWorld {
 	
 	PFont FlappyFont;
 	PFont GameoverFont;
+	
+
+	public GameoverScreen(Score score) {
+		this.score = score;
+		
+		ArrayList<Integer> allScores = loadScores();
+		allScores.add(this.score.getScore());
+		saveScores(allScores);
+		
+		// compute the high score from allScores
+	}
+	
+	
+	/* save all the scores in the list to the data file */
+	private void saveScores(ArrayList<Integer> allScores) {
+		
+	}
+
+
+	/* open data file and read all existing scores */
+	public ArrayList<Integer> loadScores() {
+	
+		return null;
+	}
 	
 	@Override
 	public IWorld update() {
@@ -33,7 +61,6 @@ public class GameoverScreen implements IWorld {
 		
 		c.textFont(FlappyFont);
 		c.textSize(150);
-		
 		c.text("Game Over", 300, 270);
 		
 		c.textSize(50);
@@ -41,14 +68,15 @@ public class GameoverScreen implements IWorld {
 		
 		c.textSize(20);
 		c.textFont(GameoverFont);
-		c.text("Highscore: " , 300, 430);
+		c.text("Your Score: " + score.getScore(), 300, 400);
+		c.text("High score: ", 300, 430);
 		
 		return c;
 	}
 	
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
-	    if (kev.getKey() == ' ' && isGameOver) {
+	    if (kev.getKey() == ' ') {
 	    	System.out.println("ur pressing space.");
 	    	return new FlappyWorld(new Ball(100, 200, 10), 
 					new WallManager(50, 120, 2), 
@@ -57,6 +85,7 @@ public class GameoverScreen implements IWorld {
 	        return this;
 	    }
 	}
+
 
 
 }
