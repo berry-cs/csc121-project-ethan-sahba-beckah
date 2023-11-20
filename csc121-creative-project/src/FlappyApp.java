@@ -22,12 +22,10 @@ public class FlappyApp extends PApplet {
     	f = f.update();
     }
     
-    
     public void keyPressed(KeyEvent kev) {
         f = f.keyPressed(kev);
     }
     
-
     public static void main(String[] args) {
         PApplet.runSketch(new String[] { "FlappyApp" }, new FlappyApp());
     }

@@ -41,4 +41,12 @@ public class Wall {
 		return x + width < 0;
 	}
 	
+	/*
+	 * Sets the speed of the walls
+	 */
+	public void setSpeed(float newSpeed) {
+	    this.speed = newSpeed;
+	}
+
+	
 }

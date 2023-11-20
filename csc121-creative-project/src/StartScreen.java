@@ -19,6 +19,9 @@ public class StartScreen implements IWorld {
 	
 	PFont FlappyFont;
 	
+	/*
+	 * Displays start screen text
+	 */
 	public PApplet draw(PApplet c) {
 		c.background(91, 134, 194);
 		c.fill(0);
@@ -38,6 +41,9 @@ public class StartScreen implements IWorld {
 		return c;
 	}
 
+	/*
+	 * Updates the x and y of text on screen
+	 */
 	@Override
 	public IWorld update() {
 		x = 100;
@@ -46,6 +52,9 @@ public class StartScreen implements IWorld {
 		return this;
 	}
 
+	/*
+	 * Handles key presses to return a new instance of flappyworld
+	 */
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {

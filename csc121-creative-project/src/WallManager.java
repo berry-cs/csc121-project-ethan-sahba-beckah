@@ -59,6 +59,7 @@ public class WallManager {
             wallSpeed += 0.5;
             decreaseSpawnFrequency();
             score.increment();
+            updateAllWallsSpeed();
         }
         
     }
@@ -90,5 +91,15 @@ public class WallManager {
     public void decreaseSpawnFrequency() {
     	 wallSpawnFrequency *= 0.85; // Decrease spawn frequency, adjust as needed
     }
+    
+    /*
+     * Updates the speed for all walls in the list of walls
+     */
+    private void updateAllWallsSpeed() {
+        for (Wall wall : walls) {
+            wall.setSpeed(wallSpeed);
+        }
+    }
+
     
 }

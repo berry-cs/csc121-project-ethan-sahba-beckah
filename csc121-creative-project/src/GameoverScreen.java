@@ -1,4 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -8,7 +13,7 @@ import processing.event.KeyEvent;
 public class GameoverScreen implements IWorld {
 
 	private Score score;
-	private Score highScore;
+	private Integer highScore;
 	
 	/*
 	 * x and y values for the text on screen.
@@ -19,38 +24,67 @@ public class GameoverScreen implements IWorld {
 	PFont FlappyFont;
 	PFont GameoverFont;
 	
-
+	/*
+	 * Initiates score input/output code
+	 */
 	public GameoverScreen(Score score) {
 		this.score = score;
 		
 		ArrayList<Integer> allScores = loadScores();
 		allScores.add(this.score.getScore());
-		saveScores(allScores);
 		
-		// compute the high score from allScores
+		highScore = Collections.max(allScores);
+		saveScores(allScores);
 	}
 	
 	
 	/* save all the scores in the list to the data file */
 	private void saveScores(ArrayList<Integer> allScores) {
-		
+		Collections.sort(allScores, Collections.reverseOrder());
+	    int maxScoresToKeep = 10; 
+	    
+	    if (allScores.size() > maxScoresToKeep) {
+	        allScores = new ArrayList<Integer>(allScores.subList(0, maxScoresToKeep));
+	    }
+
+	    try {
+	        PrintWriter writer = new PrintWriter(new File("highscore.txt"));
+	        for (int score : allScores) {
+	            writer.println(score);
+	        }
+	        writer.close();
+	    } catch (FileNotFoundException e) {
+	        System.err.println("Error writing to file: " + e.getMessage());
+	    }
 	}
-
-
+	
+	
 	/* open data file and read all existing scores */
 	public ArrayList<Integer> loadScores() {
-	
-		return null;
+		ArrayList<Integer> scores = new ArrayList<Integer>();
+		File file = new File("highscore.txt");
+		
+		try {
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextInt()) {
+				scores.add(scanner.nextInt());
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("File not found: " + e.getMessage());
+		}
+		
+		return scores;
 	}
 	
 	@Override
 	public IWorld update() {
-		x = 100;
-		x2 = 160;
-		y2 = 400;
 		return this;
 	}
 	
+	/*
+	 * Handles drawing all the text and such on screen
+	 */
 	@Override
 	public PApplet draw(PApplet c) {
 		c.background(91, 134, 194);
@@ -69,15 +103,17 @@ public class GameoverScreen implements IWorld {
 		c.textSize(20);
 		c.textFont(GameoverFont);
 		c.text("Your Score: " + score.getScore(), 300, 400);
-		c.text("High score: ", 300, 430);
+		c.text("High score: " + highScore, 300, 430);
 		
 		return c;
 	}
 	
+	/*
+	 * Handles new flappybird instance when space is pressed
+	 */
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
 	    if (kev.getKey() == ' ') {
-	    	System.out.println("ur pressing space.");
 	    	return new FlappyWorld(new Ball(100, 200, 10), 
 					new WallManager(50, 120, 2), 
 					new Score());

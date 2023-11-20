@@ -7,7 +7,6 @@ public class Ball {
     float radius;        // Radius of the ball
     int height = 600;
 
-
     public Ball(float startX, float startY, float startRadius) {
         x = startX;
         y = startY;
