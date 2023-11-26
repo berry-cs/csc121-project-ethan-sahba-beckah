@@ -35,7 +35,7 @@ public class FlappyApp extends PApplet {
     /*
      * Loads all the sounds into the game
      */
-    void loadSound() {
+    public void loadSound() {
     	Sound.flapSound = new SoundFile(this, "sounds/flap.mp3");
     	Sound.deathSound = new SoundFile(this, "sounds/die.mp3");
     	Sound.scoreSound = new SoundFile(this, "sounds/score.wav");
