@@ -61,7 +61,7 @@ public class WallManager {
             wallSpeed += 0.5;
             decreaseSpawnFrequency();
             score.increment();
-            updateAllWallsSpeed();
+            updateSpeed();
             Sound.scoreSound();
         }
         
@@ -98,7 +98,7 @@ public class WallManager {
     /*
      * Updates the speed for all walls in the list of walls
      */
-    private void updateAllWallsSpeed() {
+    private void updateSpeed() {
         for (Wall wall : walls) {
             wall.setSpeed(wallSpeed);
         }
