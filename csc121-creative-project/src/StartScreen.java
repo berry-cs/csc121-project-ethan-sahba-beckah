@@ -20,7 +20,7 @@ public class StartScreen implements IWorld {
 	PFont FlappyFont;
 	
 	/*
-	 * Displays start screen text
+	 * Handles drawing text on screen
 	 */
 	public PApplet draw(PApplet c) {
 		c.background(91, 134, 194);
@@ -53,7 +53,7 @@ public class StartScreen implements IWorld {
 	}
 
 	/*
-	 * Handles key presses to return a new instance of flappyworld
+	 * Returns a new flappy bird instance when space is pressed
 	 */
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {

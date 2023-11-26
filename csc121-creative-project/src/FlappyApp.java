@@ -4,32 +4,40 @@ import processing.sound.*;
 
 public class FlappyApp extends PApplet {
 
-	// represents a FlappyWorld instance
+	/*
+	 * Represents a FlappyWorld instance
+	 */
     IWorld f;
     
-    // init window size
+    /*
+     * Initialize window size
+     */
     public void settings() {
         this.size(600, 600);
     }
 
-    // init world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
+    /*
+     * Initializes world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
+     * Also loads sounds
+     */
     public void setup() {
     	f = new StartScreen();
     	loadSound();
     }
 
-    // Draws objects on the screen
+    /*
+     * Draws objects on the screen
+     */
     public void draw() {
     	f.draw(this);  // Call the draw method of FlappyWorld 
     	f = f.update();
     }
     
+    /*
+     * Handles key presses
+     */
     public void keyPressed(KeyEvent kev) {
         f = f.keyPressed(kev);
-    }
-    
-    public static void main(String[] args) {
-        PApplet.runSketch(new String[] { "FlappyApp" }, new FlappyApp());
     }
     
     /*
@@ -40,5 +48,10 @@ public class FlappyApp extends PApplet {
     	Sound.deathSound = new SoundFile(this, "sounds/die.mp3");
     	Sound.scoreSound = new SoundFile(this, "sounds/score.wav");
     }
+    
+    public static void main(String[] args) {
+        PApplet.runSketch(new String[] { "FlappyApp" }, new FlappyApp());
+    }
+    
 }
 

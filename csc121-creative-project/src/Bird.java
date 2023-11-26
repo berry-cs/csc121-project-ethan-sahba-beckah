@@ -34,18 +34,18 @@ public class Bird {
      * Draw the ball on screen
      */
     public void draw(PApplet p) {
-        p.fill(52, 46, 55);  // Set the color of the ball
+        p.fill(52, 46, 55);  			// Set the color of the ball
         p.noStroke();
         p.imageMode(p.CENTER);
         p.image(p.loadImage("files/birds.png"), (float) x, (float) y);
-        //p.ellipse(x, y, radius * 2, radius * 2);
     }
     
     /*
      * This applies boost to the ball, making it move upward
      */
     public void boost(int b) {
-        velocityY = b; 											// Adjust this value to change the boost strength
+    	// Adjust this value to change the boost strength
+    	velocityY = b; 											
     }
     
     /*

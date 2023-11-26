@@ -7,18 +7,17 @@ import processing.event.KeyEvent;
 
 public class GameoverScreen implements IWorld {
 
+	PFont FlappyFont;
+	PFont GameoverFont;
 	private Score score;
 	private Integer highScore;
+	private Highscore highScoreManager = new Highscore();
 	
 	/*
 	 * x and y values for the text on screen.
 	 */
 	float x, y;
 	float x2, y2;
-	
-	PFont FlappyFont;
-	PFont GameoverFont;
-	private Highscore highScoreManager = new Highscore();
 	
 	/*
 	 * Handles the loading and updating of high scores
@@ -34,7 +33,7 @@ public class GameoverScreen implements IWorld {
     }
 	
 	/*
-	 * Handles drawing all the text and such on screen
+	 * Handles drawing text on screen along with your score and the high score
 	 */
 	@Override
 	public PApplet draw(PApplet c) {
@@ -60,7 +59,7 @@ public class GameoverScreen implements IWorld {
 	}
 	
 	/*
-	 * Handles new flappy bird instance when space is pressed
+	 * Returns a new flappy bird instance when space is pressed
 	 */
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
