@@ -23,59 +23,20 @@ public class GameoverScreen implements IWorld {
 	
 	PFont FlappyFont;
 	PFont GameoverFont;
+	private Highscore highScoreManager = new Highscore();
 	
 	/*
 	 * Initiates score input/output code
 	 */
 	public GameoverScreen(Score score) {
-		this.score = score;
-		
-		ArrayList<Integer> allScores = loadScores();
-		allScores.add(this.score.getScore());
-		
-		highScore = Collections.max(allScores);
-		saveScores(allScores);
-	}
-	
-	
-	/* save all the scores in the list to the data file */
-	private void saveScores(ArrayList<Integer> allScores) {
-		Collections.sort(allScores, Collections.reverseOrder());
-	    int maxScoresToKeep = 10; 
-	    
-	    if (allScores.size() > maxScoresToKeep) {
-	        allScores = new ArrayList<Integer>(allScores.subList(0, maxScoresToKeep));
-	    }
-
-	    try {
-	        PrintWriter writer = new PrintWriter(new File("highscore.txt"));
-	        for (int score : allScores) {
-	            writer.println(score);
-	        }
-	        writer.close();
-	    } catch (FileNotFoundException e) {
-	        System.err.println("Error writing to file: " + e.getMessage());
-	    }
-	}
-	
-	
-	/* open data file and read all existing scores */
-	public ArrayList<Integer> loadScores() {
-		ArrayList<Integer> scores = new ArrayList<Integer>();
-		File file = new File("highscore.txt");
-		
-		try {
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNextInt()) {
-				scores.add(scanner.nextInt());
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("File not found: " + e.getMessage());
-		}
-		
-		return scores;
-	}
+        this.score = score;
+        
+        ArrayList<Integer> allScores = highScoreManager.loadScores();
+        allScores.add(this.score.getScore());
+        
+        highScore = Collections.max(allScores);
+        highScoreManager.saveScores(allScores);
+    }
 	
 	@Override
 	public IWorld update() {
