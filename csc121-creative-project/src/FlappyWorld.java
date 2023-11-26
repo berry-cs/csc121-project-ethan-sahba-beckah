@@ -64,7 +64,6 @@ public class FlappyWorld implements IWorld {
     	if (this.b.hitsGround()) {
             isGameOver = true;
             Sound.deathSound();
-            Sound.deathSound.amp(1);
         }
     	
     	for (Wall wall : WallManager.walls) {
