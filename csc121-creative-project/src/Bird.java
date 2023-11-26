@@ -1,13 +1,13 @@
 import processing.core.PApplet;
 
-public class Ball {
+public class Bird {
     float x, y;          // Position of the ball
     float velocityY;     // Vertical velocity of the ball
     float gravity;       // Gravity affecting the ball
     float radius;        // Radius of the ball
     int height = 600;
 
-    public Ball(float startX, float startY, float startRadius) {
+    public Bird(float startX, float startY, float startRadius) {
         x = startX;
         y = startY;
         radius = startRadius;
@@ -37,7 +37,7 @@ public class Ball {
         p.fill(52, 46, 55);  // Set the color of the ball
         p.noStroke();
         p.imageMode(p.CENTER);
-        p.image(p.loadImage("birds.png"), (float) x, (float) y);
+        p.image(p.loadImage("files/birds.png"), (float) x, (float) y);
         //p.ellipse(x, y, radius * 2, radius * 2);
     }
     

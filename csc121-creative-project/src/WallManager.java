@@ -27,7 +27,7 @@ public class WallManager {
     /*
      * Updates the walls
      */
-    public void updateWalls(Ball ball, Score score) {
+    public void updateWalls(Bird ball, Score score) {
         timeSinceLastWall++;
 
         // Check if it's time to add a new wall
@@ -48,18 +48,21 @@ public class WallManager {
             }
         }
         
-        for (Wall wall : WallManager.walls) {												// If ball passes through the gap, increase the score
+        // If ball passes through the gap, increase the score
+        for (Wall wall : WallManager.walls) {
             if (ball.x > wall.x + wall.width && !wall.scoreCounted) {
                 score.increment();
                 wall.scoreCounted = true;
             }
         }
         
-        if (score.isMultipleOfTen()) {														// Every ten points it increases the speed and gives the player an extra point
+        // Every ten points it increases the speed and gives the player an extra point
+        if (score.isMultipleOfTen()) {
             wallSpeed += 0.5;
             decreaseSpawnFrequency();
             score.increment();
             updateAllWallsSpeed();
+            Sound.scoreSound();
         }
         
     }
@@ -79,7 +82,7 @@ public class WallManager {
     private void addWall() {
         
     	// Calculate a random gap start position
-        float gapStart = rand.nextFloat(100, 600 - 100 - gapHeight); // Adjust range as needed
+        float gapStart = rand.nextFloat(100, 600 - 100 - gapHeight); 				// Adjust range as needed
 
         // Add a new wall pair to the list
         walls.add(new Wall(600, gapStart, gapHeight, wallWidth, wallSpeed));
@@ -89,7 +92,7 @@ public class WallManager {
      * Helper method to decrease the wall spawn rate as speed increases
      */
     public void decreaseSpawnFrequency() {
-    	 wallSpawnFrequency *= 0.85; // Decrease spawn frequency, adjust as needed
+    	 wallSpawnFrequency *= 0.85; 												// Decrease spawn frequency, adjust as needed
     }
     
     /*

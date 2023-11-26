@@ -25,7 +25,7 @@ public class StartScreen implements IWorld {
 	public PApplet draw(PApplet c) {
 		c.background(91, 134, 194);
 		c.fill(0);
-		FlappyFont = c.createFont("FlappyBirdy.ttf", 150, true);
+		FlappyFont = c.createFont("files/FlappyBirdy.ttf", 150, true);
 		
 		yOffset = amplitude * PApplet.sin(angle);
 		angle += 0.05;
@@ -58,7 +58,7 @@ public class StartScreen implements IWorld {
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {
-			return new FlappyWorld(new Ball(100, 200, 10), 
+			return new FlappyWorld(new Bird(100, 200, 10), 
 									new WallManager(50, 120, 2), 
 									new Score());
 		} else {

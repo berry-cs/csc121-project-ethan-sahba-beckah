@@ -1,17 +1,18 @@
 import processing.core.PApplet;
 import processing.event.KeyEvent;
-import processing.event.MouseEvent;
+
 
 // Every FlappyWorld has a background color
 public class FlappyWorld implements IWorld {
-	Ball b;																// Represents the ball
+	Bird b;																// Represents the ball
 	WallManager wm;
 	Score s;
 	Wall w;
 	public boolean isGameOver;
+
 	
 	
-    public FlappyWorld(Ball b, WallManager wm, Score s) {
+    public FlappyWorld(Bird b, WallManager wm, Score s) {
     	this.b = b;
     	this.wm = wm;
     	this.s = s;
@@ -48,6 +49,7 @@ public class FlappyWorld implements IWorld {
     public IWorld keyPressed(KeyEvent kev) {
     	if (kev.getKey() == ' ' && !isGameOver) {
             this.b.boost(-7);
+            Sound.flapSound();
             return new FlappyWorld(this.b, this.wm, this.s);
         } 
     	else {
@@ -61,11 +63,14 @@ public class FlappyWorld implements IWorld {
     public void gameover() {
     	if (this.b.hitsGround()) {
             isGameOver = true;
+            Sound.deathSound();
+            Sound.deathSound.amp(1);
         }
     	
     	for (Wall wall : WallManager.walls) {
             if (this.b.collidesWith(wall)) {
                 isGameOver = true;
+                Sound.deathSound();
                 break;
             }
         }

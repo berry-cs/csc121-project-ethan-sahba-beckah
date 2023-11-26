@@ -1,5 +1,6 @@
 import processing.core.*;
 import processing.event.*;
+import processing.sound.*;
 
 public class FlappyApp extends PApplet {
 
@@ -14,6 +15,7 @@ public class FlappyApp extends PApplet {
     // init world objects including: FlappyWorld, Ball, Paddle, Wall, and WallManager
     public void setup() {
     	f = new StartScreen();
+    	loadSound();
     }
 
     // Draws objects on the screen
@@ -28,6 +30,15 @@ public class FlappyApp extends PApplet {
     
     public static void main(String[] args) {
         PApplet.runSketch(new String[] { "FlappyApp" }, new FlappyApp());
+    }
+    
+    /*
+     * Loads all the sounds into the game
+     */
+    void loadSound() {
+    	Sound.flapSound = new SoundFile(this, "sounds/flap.mp3");
+    	Sound.deathSound = new SoundFile(this, "sounds/die.mp3");
+    	Sound.scoreSound = new SoundFile(this, "sounds/score.wav");
     }
 }
 

@@ -1,10 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
@@ -26,7 +21,7 @@ public class GameoverScreen implements IWorld {
 	private Highscore highScoreManager = new Highscore();
 	
 	/*
-	 * Initiates score input/output code
+	 * Handles the loading and updating of high scores
 	 */
 	public GameoverScreen(Score score) {
         this.score = score;
@@ -38,11 +33,6 @@ public class GameoverScreen implements IWorld {
         highScoreManager.saveScores(allScores);
     }
 	
-	@Override
-	public IWorld update() {
-		return this;
-	}
-	
 	/*
 	 * Handles drawing all the text and such on screen
 	 */
@@ -50,7 +40,7 @@ public class GameoverScreen implements IWorld {
 	public PApplet draw(PApplet c) {
 		c.background(91, 134, 194);
 		c.fill(0);
-		FlappyFont = c.createFont("FlappyBirdy.ttf", 150, true);
+		FlappyFont = c.createFont("files/FlappyBirdy.ttf", 150, true);
 		GameoverFont = c.createFont("Serif", 20, true);
 		c.textAlign(PConstants.CENTER);
 		
@@ -70,12 +60,12 @@ public class GameoverScreen implements IWorld {
 	}
 	
 	/*
-	 * Handles new flappybird instance when space is pressed
+	 * Handles new flappy bird instance when space is pressed
 	 */
 	@Override
 	public IWorld keyPressed(KeyEvent kev) {
 	    if (kev.getKey() == ' ') {
-	    	return new FlappyWorld(new Ball(100, 200, 10), 
+	    	return new FlappyWorld(new Bird(100, 200, 10), 
 					new WallManager(50, 120, 2), 
 					new Score());
 	    } else {
@@ -83,6 +73,9 @@ public class GameoverScreen implements IWorld {
 	    }
 	}
 
-
+	@Override
+	public IWorld update() {
+		return this;
+	}
 
 }

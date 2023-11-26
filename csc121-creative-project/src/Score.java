@@ -28,7 +28,7 @@ public class Score {
 	 * Checks if the score is a multiple of 10
 	 */
 	public boolean isMultipleOfTen() {
-        return score > 0 && score % 10 == 0;
+		return score > 0 && score % 10 == 0;
     }
 	
 	/*

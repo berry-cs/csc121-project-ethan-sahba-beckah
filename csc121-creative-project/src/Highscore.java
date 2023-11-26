@@ -7,9 +7,12 @@ import java.io.PrintWriter;
 
 public class Highscore {
 
+	/*
+     * Saves a list of scores to a file, keeping only the top scores.
+     */
     public void saveScores(ArrayList<Integer> allScores) {
         Collections.sort(allScores, Collections.reverseOrder());
-        int maxScoresToKeep = 10;
+        int maxScoresToKeep = 10;										// Saves a maximum of 10 scores in the file
 
         if (allScores.size() > maxScoresToKeep) {
             allScores = new ArrayList<Integer>(allScores.subList(0, maxScoresToKeep));
@@ -26,6 +29,9 @@ public class Highscore {
         }
     }
 
+    /*
+     * Loads scores from a file.
+     */
     public ArrayList<Integer> loadScores() {
         ArrayList<Integer> scores = new ArrayList<Integer>();
         File file = new File("highscore.txt");
