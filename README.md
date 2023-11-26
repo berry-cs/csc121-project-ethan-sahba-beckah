@@ -1,7 +1,7 @@
 # Flappy Bird Project - CSC121
 
 ---
-<img width="303" alt="flappington" src="https://github.com/berry-cs/csc121-project-ethan-sahba-beckah/assets/100727989/9cbcf688-59a7-43df-9af7-e40b5b71019d">
+<img width="303" alt="flappington" src="https://github.com/berry-cs/csc121-project-ethan-sahba-beckah/assets/100727989/9cbcf688-59a7-43df-9af7-e40b5b71019d"> ...but scuffed
 
 ---
 This is a Flappy Bird clone made using Java and the Processing library.
