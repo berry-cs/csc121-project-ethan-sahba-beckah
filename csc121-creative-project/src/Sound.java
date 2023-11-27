@@ -10,7 +10,7 @@ public class Sound {
 	 * Handles playing the flap sound
 	 */
 	public static void flapSound() {
-		flapSound.amp((float) 0.5);
+		flapSound.amp((float) 0.4);
 		flapSound.play();
 	}
 	
