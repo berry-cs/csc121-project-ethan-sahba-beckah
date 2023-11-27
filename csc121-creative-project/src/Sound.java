@@ -18,7 +18,7 @@ public class Sound {
 	 * Handles playing the death sound
 	 */
 	public static void deathSound() {
-		deathSound.amp((float) 0.5);
+		deathSound.amp((float) 0.2);
 		deathSound.play();
 	}
 	
@@ -26,7 +26,7 @@ public class Sound {
 	 * Handles playing the score sound
 	 */
 	public static void scoreSound() {
-		scoreSound.amp((float) 0.5);
+		scoreSound.amp((float) 0.3);
 		scoreSound.play();
 	}
 }
