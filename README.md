@@ -6,6 +6,7 @@ by Ethan, Sahba, and Beckah
 
 ---
 This is a Flappy Bird clone made using Java and the Processing library.
+
 Run the main method in the FlappyApp class to play the game.
 
 ## Features
